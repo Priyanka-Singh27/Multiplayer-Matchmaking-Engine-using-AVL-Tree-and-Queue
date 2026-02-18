@@ -1,16 +1,16 @@
-# 🎮 HARDPOINT MATCHMAKER - Multiplayer Matchmaking Engine
+# HARDPOINT MATCHMAKER - Multiplayer Matchmaking Engine
 
 A pixel-art, game-inspired matchmaking system built for Call of Duty Hardpoint 5v5 matches. Features intelligent team balancing using AVL Trees and Priority Queues with a stunning retro UI.
 
-## ✨ Features
+## Features
 
-### 🎯 Core Functionality
+### Core Functionality
 - **AVL Tree** - Keeps players sorted by ELO rating with O(log n) operations
 - **Priority Queue** - Ensures fairest wait times for all players
 - **Smart Team Balancing** - Optimizes 5v5 team splits for minimum ELO gap
 - **Real-time Updates** - WebSocket-powered live matchmaking
 
-### 🎨 Three Interactive Tabs
+### Three Interactive Tabs
 
 #### 1. **LOBBY** - Watch Matches Form Live
 - Real-time player queue with animated cards
@@ -33,19 +33,19 @@ A pixel-art, game-inspired matchmaking system built for Call of Duty Hardpoint 5
 - Clean table view with status badges
 - Floating action button for quick adds
 
-### 🌓 Light & Dark Themes
+### Light & Dark Themes
 - Fully designed dual themes (not just color swaps)
 - Smooth transitions between modes
 - Persistent theme preference
 
-### 🎨 Pixel-Art Game Aesthetic
+### Pixel-Art Game Aesthetic
 - Retro pixel font (Press Start 2P)
 - Animated starfield background
 - Chunky borders and shadows
 - Vibrant neon accents (pink/cyan)
 - Smooth CSS animations throughout
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -67,7 +67,7 @@ Open your browser and navigate to:
 http://localhost:5000
 ```
 
-## 🎮 How to Use
+## How to Use
 
 ### Starting a Simulation
 
@@ -95,7 +95,7 @@ http://localhost:5000
 - Use the **SPEED** slider in the top-right (0.5x to 3x)
 - Useful for demos and presentations
 
-## 📊 What Makes This Project Special
+## What Makes This Project Special
 
 ### Data Structures
 - **AVL Tree** with full balancing (left/right/left-right/right-left rotations)
@@ -115,7 +115,7 @@ Instead of randomly splitting 10 players:
 - Instant tree visualization updates
 - Match formation broadcasts
 
-## 🎨 Design Philosophy
+## Design Philosophy
 
 Inspired by retro pixel-art space games:
 - **Typography**: Press Start 2P for that authentic arcade feel
@@ -123,7 +123,7 @@ Inspired by retro pixel-art space games:
 - **Animations**: Smooth, purposeful, game-like transitions
 - **Layout**: Clean, organized, functional
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 matchmaking_engine/
@@ -138,7 +138,7 @@ matchmaking_engine/
 │       └── main.js       # Frontend logic + WebSocket handling
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend**: Flask, Flask-SocketIO
 - **Frontend**: Vanilla JavaScript (no frameworks)
@@ -146,14 +146,14 @@ matchmaking_engine/
 - **Real-time**: WebSockets
 - **Data Structures**: Custom AVL Tree and Priority Queue implementations
 
-## 🎯 Performance
+## Performance
 
 - **AVL Tree**: O(log n) insert/delete/search
 - **Priority Queue**: O(log n) insert/extract-min
 - **Team Balancing**: O(n choose k) with optimizations
 - **Supports**: 100+ concurrent players in queue
 
-## 📝 Future Enhancements
+## Future Enhancements
 
 - **Party System**: Queue as a group (2-3 players)
 - **Ping-Aware Matching**: Factor in latency
@@ -161,7 +161,7 @@ matchmaking_engine/
 - **Match History Persistence**: Save to database
 - **ELO Updates**: Winners gain, losers lose ELO after matches
 
-## 👨‍💻 Development Notes
+## Development Notes
 
 ### Adding More Players Manually
 The simulation generates realistic player data, but you can add custom players via the UI or API:
@@ -182,7 +182,7 @@ curl -X POST http://localhost:5000/api/player/add \
 - `POST /api/simulation/stop` - Stop simulation
 - `POST /api/simulation/speed` - Set speed
 
-## 🎓 Educational Value
+## Educational Value
 
 Perfect for demonstrating:
 - Advanced Data Structures (AVL Trees, Priority Queues)
@@ -191,9 +191,9 @@ Perfect for demonstrating:
 - Full-Stack Development
 - UI/UX Design
 
-## 📄 License
+## License
 
-Educational project - feel free to use and modify!
+Educational project - feel free to use!
 
 ---
 
