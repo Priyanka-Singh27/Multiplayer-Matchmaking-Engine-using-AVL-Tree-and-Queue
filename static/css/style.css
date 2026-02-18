@@ -136,7 +136,7 @@ body {
 }
 
 .logo-text {
-    font-size: 14.5px;
+    font-size: 12px;
     color: var(--accent-primary);
     text-shadow: 2px 2px 0 var(--shadow-color);
     letter-spacing: 2px;
@@ -153,7 +153,7 @@ body {
     color: var(--text-secondary);
     padding: 12px 24px;
     font-family: var(--pixel-font);
-    font-size: 11px;
+    font-size: 10px;
     cursor: pointer;
     transition: all 0.2s;
     position: relative;
@@ -259,7 +259,7 @@ body {
 }
 
 .stat-label {
-    font-size: 9px;
+    font-size: 8px;
     color: var(--text-muted);
     margin-bottom: 8px;
 }
@@ -288,7 +288,7 @@ body {
 }
 
 .queue-header h3 {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--accent-secondary);
 }
 
@@ -949,7 +949,7 @@ body {
     color: var(--text-primary);
     padding: 15px 30px;
     font-family: var(--pixel-font);
-    font-size: 11px;
+    font-size: 10px;
     cursor: pointer;
     transition: all 0.2s;
     box-shadow: 4px 4px 0 var(--shadow-color);
