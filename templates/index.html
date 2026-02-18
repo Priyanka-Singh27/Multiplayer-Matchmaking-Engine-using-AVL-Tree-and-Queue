@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARDPOINT MATCHMAKER</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+    <!-- Starfield Background -->
+    <canvas id="starfield"></canvas>
+    
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <div class="logo">
+                <span class="pixel-icon">🎮</span>
+                <span class="logo-text">HARDPOINT MATCHMAKER</span>
+            </div>
+        </div>
+        
+        <div class="nav-center">
+            <button class="tab-btn active" data-tab="lobby">LOBBY</button>
+            <button class="tab-btn" data-tab="tree">AVL TREE</button>
+            <button class="tab-btn" data-tab="management">PLAYERS</button>
+        </div>
+        
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <div class="speed-control">
+                <label>SPEED</label>
+                <input type="range" id="speed-slider" min="0.5" max="3" step="0.5" value="1">
+                <span id="speed-display">1.0x</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        
+        <!-- TAB 1: LOBBY -->
+        <div id="lobby-tab" class="tab-content active">
+            <!-- Stats Dashboard (Top Right) -->
+            <div class="stats-dashboard pixel-card">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">QUEUE</div>
+                        <div class="stat-value" id="stat-queue">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">MATCHES</div>
+                        <div class="stat-value" id="stat-matches">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">BALANCE</div>
+                        <div class="stat-value" id="stat-balance">--</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">WAIT</div>
+                        <div class="stat-value" id="stat-wait">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Player Queue (Left Panel) -->
+            <div class="player-queue pixel-card">
+                <div class="queue-header">
+                    <h3>WAITING PLAYERS</h3>
+                    <span class="queue-badge" id="queue-count">0</span>
+                </div>
+                <div class="queue-list" id="queue-list">
+                    <!-- Player cards will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Match Formation Area (Center) -->
+            <div class="match-area">
+                <div id="formation-stage">
+                    <!-- Animation happens here -->
+                </div>
+            </div>
+
+            <!-- Match History (Bottom) -->
+            <div class="match-history">
+                <h3 class="history-title">RECENT MATCHES</h3>
+                <div class="history-scroll" id="history-list">
+                    <!-- Match cards will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Simulation Controls -->
+            <div class="sim-controls">
+                <button id="start-sim" class="pixel-btn primary">START SIMULATION</button>
+                <button id="stop-sim" class="pixel-btn secondary" style="display:none;">STOP</button>
+            </div>
+        </div>
+
+        <!-- TAB 2: AVL TREE -->
+        <div id="tree-tab" class="tab-content">
+            <div class="tree-container">
+                <div class="tree-controls pixel-card">
+                    <button id="reset-view" class="pixel-btn small">RESET VIEW</button>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="show-balance">
+                        <span>SHOW BALANCE</span>
+                    </label>
+                    <input type="text" id="tree-search" class="pixel-input" placeholder="SEARCH ELO...">
+                </div>
+                
+                <svg id="tree-canvas" width="100%" height="100%">
+                    <!-- Tree will be rendered here -->
+                </svg>
+            </div>
+
+            <!-- Player Detail Panel (Slide-in) -->
+            <div id="player-detail" class="detail-panel">
+                <button class="close-btn">✕</button>
+                <div class="detail-content">
+                    <!-- Player details populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: PLAYER MANAGEMENT -->
+        <div id="management-tab" class="tab-content">
+            <div class="management-container">
+                <!-- Search Bar -->
+                <div class="search-bar pixel-card">
+                    <input type="text" id="player-search" class="pixel-input" placeholder="SEARCH BY NAME...">
+                    <div class="elo-filter">
+                        <label>ELO RANGE</label>
+                        <input type="range" id="elo-min" min="500" max="2500" value="500">
+                        <input type="range" id="elo-max" min="500" max="2500" value="2500">
+                        <span id="elo-range-display">500-2500</span>
+                    </div>
+                    <div class="results-count" id="results-count">0 PLAYERS</div>
+                </div>
+
+                <!-- Player Table -->
+                <div class="player-table-container">
+                    <table class="player-table">
+                        <thead>
+                            <tr>
+                                <th>AVATAR</th>
+                                <th>NAME</th>
+                                <th>ELO</th>
+                                <th>PING</th>
+                                <th>STATUS</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="player-table-body">
+                            <!-- Rows inserted by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add Player Button (Floating) -->
+                <button id="add-player-btn" class="fab pixel-btn">
+                    <span class="fab-icon">+</span>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Add Player Modal -->
+    <div id="add-modal" class="modal">
+        <div class="modal-content pixel-card">
+            <div class="modal-header">
+                <h3>ADD NEW PLAYER</h3>
+                <button class="close-btn" data-modal="add-modal">✕</button>
+            </div>
+            <form id="add-player-form">
+                <div class="form-group">
+                    <label>PLAYER NAME</label>
+                    <input type="text" id="new-player-name" class="pixel-input" required>
+                </div>
+                <div class="form-group">
+                    <label>ELO RATING</label>
+                    <input type="range" id="new-player-elo" min="500" max="2500" value="1500">
+                    <span id="elo-display">1500</span>
+                </div>
+                <div class="form-group">
+                    <label>PING (MS)</label>
+                    <input type="number" id="new-player-ping" class="pixel-input" min="5" max="200" value="30">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="pixel-btn secondary" data-modal="add-modal">CANCEL</button>
+                    <button type="submit" class="pixel-btn primary">ADD PLAYER</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content pixel-card small">
+            <div class="modal-header">
+                <h3>CONFIRM DELETE</h3>
+            </div>
+            <p class="modal-message">Delete <strong id="delete-player-name"></strong>?</p>
+            <p class="modal-note">Queue will not be disturbed</p>
+            <div class="modal-actions">
+                <button type="button" class="pixel-btn secondary" data-modal="delete-modal">CANCEL</button>
+                <button id="confirm-delete" class="pixel-btn danger">DELETE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Match Detail Modal -->
+    <div id="match-modal" class="modal">
+        <div class="modal-content pixel-card large">
+            <div class="modal-header">
+                <h3 id="match-title">MATCH #1</h3>
+                <button class="close-btn" data-modal="match-modal">✕</button>
+            </div>
+            <div id="match-detail-content">
+                <!-- Match details populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
